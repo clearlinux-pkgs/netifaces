@@ -4,14 +4,13 @@
 #
 Name     : netifaces
 Version  : 0.10.4
-Release  : 15
+Release  : 16
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_4.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_4.tar.gz
 Summary  : Portable network interface information.
 Group    : Development/Tools
 License  : MIT
 Requires: netifaces-python
-BuildRequires : netifaces-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
@@ -44,7 +43,7 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-python3 test.py
+PYTHONPATH=%{buildroot}/usr/lib/python3.5/site-packages python3 test.py
 %install
 rm -rf %{buildroot}
 python2 setup.py build -b py2 install --root=%{buildroot}
