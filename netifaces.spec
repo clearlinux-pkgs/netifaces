@@ -4,7 +4,7 @@
 #
 Name     : netifaces
 Version  : 0.10.4
-Release  : 22
+Release  : 23
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_4.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_4.tar.gz
 Summary  : Portable network interface information.
@@ -36,6 +36,7 @@ python components for the netifaces package.
 %setup -q -n al45tair-netifaces-1d6d179f8bce
 
 %build
+export LANG=C
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -43,11 +44,11 @@ python3 setup.py build -b py3
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.5/site-packages python3 test.py
+PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 test.py
 %install
 rm -rf %{buildroot}
-python2 setup.py build -b py2 install --root=%{buildroot}
-python3 setup.py build -b py3 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 
 %files
 %defattr(-,root,root,-)
