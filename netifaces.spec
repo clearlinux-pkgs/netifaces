@@ -4,7 +4,7 @@
 #
 Name     : netifaces
 Version  : 0.10.5
-Release  : 28
+Release  : 29
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Summary  : Portable network interface information.
@@ -18,11 +18,16 @@ BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
-netifaces 0.10.4
-================
-.. image:: https://drone.io/bitbucket.org/al45tair/netifaces/status.png
-:target: https://drone.io/bitbucket.org/al45tair/netifaces/latest
-:alt: Build Status
+get access to a list of the network interfaces on the local machine, and to
+        obtain the addresses of those network interfaces.
+        
+        The package has been tested on Mac OS X, Windows XP, Windows Vista, Linux
+        and Solaris.  On Windows, it is currently not able to retrieve IPv6
+        addresses, owing to shortcomings of the Windows API.
+        
+        It should work on other UNIX-like systems provided they implement
+        either getifaddrs() or support the SIOCGIFxxx socket options, although the
+        data provided by the socket options is normally less complete.
 
 %package python
 Summary: python components for the netifaces package.
@@ -36,8 +41,11 @@ python components for the netifaces package.
 %setup -q -n al45tair-netifaces-dc7c8e888476
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1487187406
+export SOURCE_DATE_EPOCH=1503122449
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -47,14 +55,18 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 test.py
 %install
-export SOURCE_DATE_EPOCH=1487187406
+export SOURCE_DATE_EPOCH=1503122449
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
+/usr/lib/python3*/*
