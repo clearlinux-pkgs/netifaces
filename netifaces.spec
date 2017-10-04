@@ -4,7 +4,7 @@
 #
 Name     : netifaces
 Version  : 0.10.5
-Release  : 32
+Release  : 33
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Summary  : Portable network interface information.
@@ -34,6 +34,7 @@ get access to a list of the network interfaces on the local machine, and to
 %package legacypython
 Summary: legacypython components for the netifaces package.
 Group: Default
+Requires: python-core
 
 %description legacypython
 legacypython components for the netifaces package.
@@ -52,6 +53,7 @@ python components for the netifaces package.
 %package python3
 Summary: python3 components for the netifaces package.
 Group: Default
+Requires: python3-core
 
 %description python3
 python3 components for the netifaces package.
@@ -65,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1506872096
+export SOURCE_DATE_EPOCH=1507160512
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -75,7 +77,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 test.py
 %install
-export SOURCE_DATE_EPOCH=1506872096
+export SOURCE_DATE_EPOCH=1507160512
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
