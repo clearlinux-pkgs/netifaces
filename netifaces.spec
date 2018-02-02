@@ -4,7 +4,7 @@
 #
 Name     : netifaces
 Version  : 0.10.5
-Release  : 35
+Release  : 36
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Summary  : Portable network interface information.
