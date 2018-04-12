@@ -4,13 +4,12 @@
 #
 Name     : netifaces
 Version  : 0.10.5
-Release  : 36
+Release  : 37
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Summary  : Portable network interface information.
 Group    : Development/Tools
 License  : MIT
-Requires: netifaces-legacypython
 Requires: netifaces-python3
 Requires: netifaces-python
 BuildRequires : pbr
@@ -31,19 +30,9 @@ get access to a list of the network interfaces on the local machine, and to
         either getifaddrs() or support the SIOCGIFxxx socket options, although the
         data provided by the socket options is normally less complete.
 
-%package legacypython
-Summary: legacypython components for the netifaces package.
-Group: Default
-Requires: python-core
-
-%description legacypython
-legacypython components for the netifaces package.
-
-
 %package python
 Summary: python components for the netifaces package.
 Group: Default
-Requires: netifaces-legacypython
 Requires: netifaces-python3
 
 %description python
@@ -67,8 +56,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1507160512
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1523566758
 python3 setup.py build -b py3
 
 %check
@@ -77,20 +65,14 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 test.py
 %install
-export SOURCE_DATE_EPOCH=1507160512
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files legacypython
-%defattr(-,root,root,-)
-/usr/lib/python2*/*
 
 %files python
 %defattr(-,root,root,-)
