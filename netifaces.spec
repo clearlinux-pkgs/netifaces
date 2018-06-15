@@ -14,7 +14,7 @@ Requires: netifaces-python3
 Requires: netifaces-python
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
