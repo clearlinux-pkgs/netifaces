@@ -4,7 +4,7 @@
 #
 Name     : netifaces
 Version  : 0.10.5
-Release  : 42
+Release  : 43
 URL      : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Source0  : https://bitbucket.org/al45tair/netifaces/get/release_0_10_5.tar.gz
 Summary  : Portable network interface information.
@@ -14,7 +14,6 @@ Requires: netifaces-python3
 Requires: netifaces-python
 BuildRequires : pbr
 BuildRequires : pip
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
@@ -56,14 +55,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523566758
+export SOURCE_DATE_EPOCH=1530382395
 python3 setup.py build -b py3
 
 %check
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.6/site-packages python3 test.py
+PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 test.py
 %install
 rm -rf %{buildroot}
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
