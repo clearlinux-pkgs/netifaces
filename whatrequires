@@ -1,7 +1,2 @@
 # This file contains recursive sources that require this package
-neutron
-nova
-openstacksdk
-os-xenapi
-oslo.utils
-swift
+Cura
